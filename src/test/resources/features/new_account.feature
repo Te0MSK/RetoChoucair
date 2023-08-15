@@ -20,4 +20,4 @@
           Scenario: "Validation of incorrect password."
             When The user clicks the Log In button
             And Fill in the username field correctly but enter the password incorrectly then click the Sign In button
-            Then The user will see the error message Invalid username or password..
+            Then The user will see the error message Invalid username or password.
