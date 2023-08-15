@@ -7,7 +7,7 @@ public class Locators {
 
 
     public static final Target JOIN_BUTTON = Target.the("Join today button").
-            located(By.xpath("//a[contains(text(), 'Join Today')]")); //unauthenticated-header/div[1]/div[3]/ul[2]/li[2]/a[1]
+            located(By.xpath("//a[contains(text(), 'Join Today')]"));
 
 
     public static final Target FIRST_NAME= Target.the("First name field").
@@ -142,6 +142,11 @@ public class Locators {
 
     public static final Target ERROR_MESSAGE= Target.the("Login invalid message").
             located(By.xpath("//div[@class='alert alert-error']"));
+
+    public static final Target CONFIRM_MESSAGE= Target.the("sign up confirm message").
+            located(By.xpath("//div[@class='image-box-header']"));
+
+
 
 
 

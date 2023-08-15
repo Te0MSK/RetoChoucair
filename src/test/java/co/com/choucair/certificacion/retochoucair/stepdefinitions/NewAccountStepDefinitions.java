@@ -1,5 +1,6 @@
 package co.com.choucair.certificacion.retochoucair.stepdefinitions;
 
+import co.com.choucair.certificacion.retochoucair.questions.ValidateConfirmMessage;
 import co.com.choucair.certificacion.retochoucair.questions.ValidateLoginMessage;
 import co.com.choucair.certificacion.retochoucair.questions.ValidateWelcomeMessage;
 import co.com.choucair.certificacion.retochoucair.tasks.*;
@@ -39,31 +40,33 @@ public class NewAccountStepDefinitions {
 
     @When("^The user clicks on the Join Today button$")
     public void theUserClicksOnTheJoinTodayButton() {
-    OnStage.theActorInTheSpotlight().wasAbleTo(JoinTodayButton.log());
+    OnStage.theActorInTheSpotlight().attemptsTo(JoinTodayButton.log());
+
 
     }
 
     @When("^Fill out all the information in the form$")
     public void fillOutAllTheInformationInTheForm() {
-     OnStage.theActorInTheSpotlight().wasAbleTo(FillForm.frm());
+     OnStage.theActorInTheSpotlight().attemptsTo(FillForm.frm());
     }
 
-    @Then("^Click the Complete Setup button$")
-    public void clickTheCompleteSetupButton() {
-        OnStage.theActorInTheSpotlight().wasAbleTo(Setup.st());
+    @Then("^Click the Complete Setup button and should see the confirmation message (.*)$")
+    public void clickTheCompleteSetupButtonAndShouldSeeTheConfirmationMessage(String msj) {
+        OnStage.theActorInTheSpotlight().attemptsTo(Setup.st());
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(ValidateConfirmMessage.vlm(),Matchers.containsString(msj)));
     }
 
     @When("^The user clicks the Log In button$")
     public void theUserClicksTheLogInButton() {
-        OnStage.theActorInTheSpotlight().wasAbleTo(Login.lg());
+        OnStage.theActorInTheSpotlight().attemptsTo(Login.lg());
     }
 
     @When("^Fill in the fields for username and password and click the Sign In button$")
     public void fillInTheFieldsForUsernameAndPasswordAndClickTheSignInButton() {
-        OnStage.theActorInTheSpotlight().wasAbleTo(FillLogin.fl());
+        OnStage.theActorInTheSpotlight().attemptsTo(FillLogin.fl());
     }
 
-    @Then("^The user will see the confirmation message (.*)$")
+    @Then("^The user should see the confirmation message (.*)$")
     public void theUserWillSeeTheConfirmationMessage(String msj) {
         OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(ValidateWelcomeMessage.message(),Matchers.containsString(msj)));
     }
@@ -71,10 +74,10 @@ public class NewAccountStepDefinitions {
 
     @And("^Fill in the username field correctly but enter the password incorrectly then click the Sign In button$")
     public void fillInTheUsernameFieldCorrectlyButEnterThePasswordIncorrectlyThenClickTheSignInButton() {
-        OnStage.theActorInTheSpotlight().wasAbleTo(FillBadLogin.bd());
+        OnStage.theActorInTheSpotlight().attemptsTo(FillBadLogin.bd());
     }
 
-    @Then("^The user will see the error message (.*)$")
+    @Then("^The user should see the error message (.*)$")
     public void theUserWillSeeTheErrorMessage(String msj) {
         OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(ValidateLoginMessage.msg(),Matchers.containsString(msj)));
     }

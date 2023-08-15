@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/new_account.feature",
                                 glue = "co.com.choucair.certificacion.retochoucair.stepdefinitions",
-                                snippets = SnippetType.CAMELCASE)
+                                snippets = SnippetType.CAMELCASE,
+                                tags ="@VerifyPassword" )
 public class RunnerTags {
 }
