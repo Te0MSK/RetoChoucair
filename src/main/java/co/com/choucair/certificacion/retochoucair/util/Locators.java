@@ -141,7 +141,7 @@ public class Locators {
 
 
     public static final Target ERROR_MESSAGE= Target.the("Login invalid message").
-            located(By.xpath("(//span[@class='kc-feedback-text']"));
+            located(By.xpath("//div[@class='alert alert-error']"));
 
 
 
